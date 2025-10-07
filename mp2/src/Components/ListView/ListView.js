@@ -22,6 +22,12 @@ export function ListView({userInput}) {
     const [sortOrder, setSortOrder] = useState("asc"); 
     const navigate = useNavigate();
 
+    //Spotify API returns info like this
+    //song.name
+    //song.artists[0].name
+    //song.album.images[0].url
+    //song.id
+
     // Sort songs based on user selection
     const sortedSongs = [...songs].sort((a, b) => {
         const aVal = a[sortBy];
@@ -83,8 +89,9 @@ export function ListView({userInput}) {
             {/*https://react.dev/learn/rendering-lists -- for future help when debugging*/}
             {sortedSongs.map(song => (
                 <div key={song.id} className="list-item">
-                    <p>{song.title}</p>
-                    <p>{song.artist}</p>
+                    <p>{song.name}</p>
+                    <p>{song.artists[0].name}</p>
+                    <img src={song.album.images[0].url} alt={song.name} />
                 </div>
             ))}
         </div>
