@@ -2,9 +2,29 @@
     position: fixed;
     top: 0;
     width: 100%;
-    height: 40px;
+    height: 55px;
 
     background-color: #50586C;
     /* for testing where it covers */
     /* border-style: dashed; */
+}
+
+.Search-input, .Search-button {
+    margin: 10px;
+    float: left;
+    background-color: #DCE2F0;
+    padding: 7px 30px 7px 7px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    /* color:#FFFFF0 */
+}
+.Search-button {
+    text-align: center;
+    margin-left: -2px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
 }
