@@ -11,6 +11,7 @@
 import React, {useState} from "react";
 import useSpotifySearch from "../SpotifyCall/SpotifySearch";
 import "./ListView.css"
+import { useNavigate } from "react-router-dom";
 
 //Some things to consider and keep track with assignment requirements
 //1. Songs, Sorting , and Order
@@ -19,21 +20,37 @@ export function ListView({userInput}) {
     const {songs, loading} = useSpotifySearch(userInput);
     const [sortBy, setSortBy] = useState("title");
     const [sortOrder, setSortOrder] = useState("asc"); 
+    const navigate = useNavigate();
 
     // Sort songs based on user selection
     const sortedSongs = [...songs].sort((a, b) => {
-        const aValue = a[sortBy];
-        const bValue = b[sortBy];
+        const aVal = a[sortBy];
+        const bVal = b[sortBy];
+
+        //Considering users can simply use all caps, here's a safety check
+        if(typeof aVal === "string") {
+            aVal = aVal.toLowerCase();
+        }
+        if(typeof bVal === "string") {
+            bVal = bVal.toLowerCase();
+        }
+
         if (sortOrder === "asc") {
-            if (aValue < bValue) {
+            if (aVal < bVal) {
                 return -1;
+            } else if (aVal > bVal) {
+                return 1;
+            } else {
+                return 0;
             }
-            return 1;
         } else {
-            if (aValue > bValue) {
+            if (aVal > bVal) {
                 return -1;
+            } else if (aVal < bVal) {
+                return 1;
+            } else {
+                return 0;
             }
-            return 1;
         }
     });
 
@@ -41,7 +58,25 @@ export function ListView({userInput}) {
         <div className="ListView">
             <h2>Your Favorite Songs</h2>
 
-            {/*Some conditions we have to display first*/}
+            {/*Let's add the sorting and order options*/}
+            <div className="ListView-sortOrder">
+                <label>
+                    Sort by:
+                    <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
+                        <option value="title">Title</option>
+                        <option value="artist">Artist</option>
+                    </select>
+                </label>
+
+                <label>
+                    Sort order:
+                    <select value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                </label>
+            </div>
+
             {loading && <p>Loading...</p>}
             {!loading && sortedSongs.length === 0 && <p>No results found</p>}
 
