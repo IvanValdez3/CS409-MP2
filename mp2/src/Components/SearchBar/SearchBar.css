@@ -7,11 +7,31 @@
     background-color: #50586C;
     /* for testing where it covers */
     /* border-style: dashed; */
+
+    display:flex;
+    align-items:center;
+
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.Search-title {
+    color: #DCE2F0;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.Search-controls {
+    display:flex;
+    align-items:center;
 }
 
 .Search-input, .Search-button {
-    margin: 10px;
-    float: left;
+    margin: 5px;
+    float: right;
     background-color: #DCE2F0;
     padding: 7px 30px 7px 7px;
     border: 1px solid #ccc;
@@ -23,7 +43,6 @@
     text-align: center;
     margin-left: -2px;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;

@@ -10,8 +10,12 @@ function SearchBar({userInput, setUserInput}) {
 
   return (
     <div className="SearchBar">
-      <input className="Search-input" type="text" placeholder="Search..." value={userInput} onChange={input} />
-      <button className="Search-button" type="submit">Search</button>
+      <h1 className="Search-title">Music Muse</h1>
+
+      <div className="SearchBar-controls">
+        <button className="Search-button" type="submit">Search</button>
+        <input className="Search-input" type="text" placeholder="Search..." value={userInput} onChange={input} />
+      </div>
     </div>
   );
 }
