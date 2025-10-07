@@ -1,24 +1,45 @@
+/*Possible improvements
+1. Not really liking the text color, a darker shade is more visible
+2. make the sort and order smaller
+3. Right now it's the same color scheme as SearchBar, but honestly complementary would be nice
+4. Allow for users to click the unit list item and get a description
+*/
+
 .ListView {
     margin: 100px auto 50px;
+    
+    /*previusly had 600px*/
     max-width: 800px;
+
     padding: 20px;
     font-family: Arial, sans-serif;
-    color: #DCE2F0;
+    color: #222;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .ListView h2 {
+    text-align: center;
     margin-bottom: 20px;
     color: #DCE2F0;
     font-weight:bold;
 }
 
-.sort-controls {
-    margin-bottom: 20px;
+.ListView-sortOrder {
     display: flex;
+    justify-self: center;
+    align-items: center;
+    margin-bottom: 20px;
     gap: 10px;
 }
 
-.sort-controls select {
+.ListView-sortOrder label {
+    font-size: 16px;
+    color: #333;
+}
+
+.ListView-sortOrder select {
     padding: 5px;
     font-size: 16px;
     border-radius: 4px;
@@ -35,7 +56,39 @@
     border-bottom: 1px solid #ccc;
 }
 
+.list-item:hover {
+    background-color: #3e4252;
+}
+
+.list-item img {
+    height: 64px;
+    width: 64px;
+    border-radius: 8px;
+    object-fit:cover;
+    margin-right: 20px;
+}
+
 .list-item p {
     margin: 0;
     font-size: 16px;
+    flex: 1;
+    text-align: left;
+    color: #DCE2F0;
+}
+
+.list-item p:first-child {
+    font-weight: bold;
+}
+
+.list-item p:last-child {
+    text-align: right;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 0.95rem;
+}
+
+.sort-controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
 }

@@ -30,8 +30,15 @@ export function ListView({userInput}) {
 
     // Sort songs based on user selection
     const sortedSongs = [...songs].sort((a, b) => {
-        const aVal = a[sortBy];
-        const bVal = b[sortBy];
+        // Map sortBy to actual song properties
+        let aVal, bVal;
+        if (sortBy === "title") {
+            aVal = a.name;
+            bVal = b.name;
+        } else if (sortBy === "artist") {
+            aVal = a.artists[0].name;
+            bVal = b.artists[0].name;
+        }
 
         //Considering users can simply use all caps, here's a safety check
         if(typeof aVal === "string") {
