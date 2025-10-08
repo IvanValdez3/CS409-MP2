@@ -20,10 +20,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "cd mp2 && npm start",
+    "build": "cd mp2 && npm run build",
+    "test": "cd mp2 && npm test",
+    "eject": "cd mp2 && npm run eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d mp2/build"
   },
   "eslintConfig": {
     "extends": [
