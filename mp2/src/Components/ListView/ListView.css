@@ -51,9 +51,9 @@
 .list-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    gap: 15px;
 }
 
 .list-item:hover {
@@ -65,7 +65,18 @@
     width: 64px;
     border-radius: 8px;
     object-fit:cover;
-    margin-right: 20px;
+}
+
+.list-item-title {
+    font-weight: bold;
+    color: #333;
+    font-size:14px;
+}
+
+.list-item-artist {
+    font-style: italic;
+    color: #666;
+    font-size: 12px;
 }
 
 .list-item p {
@@ -81,7 +92,6 @@
 }
 
 .list-item p:last-child {
-    text-align: right;
     font-style: italic;
     font-weight: normal;
     font-size: 0.95rem;

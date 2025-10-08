@@ -10,17 +10,39 @@
 
 import React, {useState} from "react";
 import useSpotifySearch from "../SpotifyCall/SpotifySearch";
-import "./ListView.css"
-import { useNavigate } from "react-router-dom";
+import "./ListView.css";
+import { SongDetails } from "../DetailView/DetailView";
+import { useNavigate, useLocation } from "react-router-dom";
 
 //Some things to consider and keep track with assignment requirements
 //1. Songs, Sorting , and Order
 
-export function ListView({userInput}) {
+interface Song {
+    id: string;
+    name: string;
+    artists: Array<{ name: string }>;
+    album: {
+        images: Array<{ url: string }>;
+        name: string;
+        release_date: string;
+    };
+    duration_ms: number;
+    external_urls: {
+        spotify: string;
+    };
+}
+
+interface ListViewProps {
+    userInput: string;
+}
+
+export function ListView({userInput}: ListViewProps) {
     const {songs, loading} = useSpotifySearch(userInput);
-    const [sortBy, setSortBy] = useState("title");
-    const [sortOrder, setSortOrder] = useState("asc"); 
+    const [sortBy, setSortBy] = useState<string>("title");
+    const [sortOrder, setSortOrder] = useState<string>("asc"); 
+    const [song, setSong] = useState<number | null>(null);
     const navigate = useNavigate();
+    const location = useLocation();
 
     //Spotify API returns info like this
     //song.name
@@ -29,9 +51,9 @@ export function ListView({userInput}) {
     //song.id
 
     // Sort songs based on user selection
-    const sortedSongs = [...songs].sort((a, b) => {
+    const sortedSongs: Song[] = [...songs].sort((a: Song, b: Song) => {
         // Map sortBy to actual song properties
-        let aVal, bVal;
+        let aVal: any, bVal: any;
         if (sortBy === "title") {
             aVal = a.name;
             bVal = b.name;
@@ -67,6 +89,24 @@ export function ListView({userInput}) {
         }
     });
 
+    /*const handleSongClick = (songId) => {
+        setSong(songId);
+    };
+
+    const handleCloseDetails = () => {
+        setSong(null);
+    };
+
+    const NextDetails = () => {
+        if(sortedSongs.length === 0 || song === null) return;
+        setSong((prevSongId) => prevSongId === sortedSongs.length - 1 ? 0 : prevSongId + 1);
+    };
+
+    const PreviousDetails = () => {
+        if(sortedSongs.length === 0 || song === null) return;
+        setSong((prevSongId) => prevSongId === 0 ? sortedSongs.length - 1 : prevSongId - 1);
+    }*/
+
     return (
         <div className="ListView">
             <h2>Your Favorite Songs</h2>
@@ -94,13 +134,24 @@ export function ListView({userInput}) {
             {!loading && sortedSongs.length === 0 && <p>No results found</p>}
 
             {/*https://react.dev/learn/rendering-lists -- for future help when debugging*/}
-            {sortedSongs.map(song => (
-                <div key={song.id} className="list-item">
-                    <p>{song.name}</p>
-                    <p>{song.artists[0].name}</p>
-                    <img src={song.album.images[0].url} alt={song.name} />
+            {sortedSongs.map((song: Song, index: number) => (
+                <div 
+                 key={song.id} 
+                 className="list-item"
+                 onClick={() => {
+                     navigate(`/details/${song.id}`, { 
+                         state: { songs: sortedSongs, currentIndex: index } 
+                     });
+                 }}
+                 style={{ cursor: 'pointer' }}
+                >
+                <img src={song.album.images[0].url} alt={song.name}/>
+                <div className="list-item-text">
+                    <p className="list-item-title">{song.name}</p>
+                    <p className="list-item-artist">{song.artists[0].name}</p>
                 </div>
-            ))}
+            </div>
+            ))}  
         </div>
     );
 }

@@ -1,0 +1,48 @@
+/*import React, { useState} from "react";
+import useSpotifySearch from "../SpotifyCall/SpotifySearch";
+import "./GalleryView.css";
+import { SongDetails } from "../DetailView/DetailView";
+
+interface GalleryViewProps {
+    userInput: string;
+}
+
+export function Gallery({userInput}: GalleryViewProps) {
+    const {songs, loading} = useSpotifySearch(userInput);
+    const [currentSong, setCurrentSong] = useState<number | null>(null);
+    //new feauture
+    const [filter, setFilter] = useState("all"); 
+
+    const filteredSongs = songs.filter(song => {
+        filter === "all" ? true : song.genres?.includes(filter);
+    });
+
+    return (
+        <div className="GalleryView">
+            <div className="Gallery-filters">
+                <button onClick={() => setFilter("all")}>All</button>
+                <button onClick={() => setFilter("pop")}>Pop</button>
+                <button onClick={() => setFilter("rock")}>Rock</button>
+            </div>
+
+            {loading && <p>Loading...</p>}
+            <div className="Gallery-grid">
+                {filteredSongs.map((song, index) => (
+                    <img key={index} src={song.albumArt} alt={song.title} 
+                    onClick={() => setCurrentSong(index)} 
+                />
+                ))}
+            </div
+            
+            {currentSong !== null && (
+                <SongDetails
+                    item={filteredSongs}
+                    currentSong={currentSong}
+                    onClose={() => setCurrentSong(null)}    
+                    
+                />
+            )}
+        </div>
+    );
+}
+*/

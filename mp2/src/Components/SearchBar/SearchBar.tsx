@@ -1,10 +1,14 @@
+import React from 'react';
 import './SearchBar.css';
 
+interface SearchBarProps {
+    userInput: string;
+    setUserInput: (value: string) => void;
+}
 
-function SearchBar({userInput, setUserInput}) {
+function SearchBar({userInput, setUserInput}: SearchBarProps) {
 
-    //Most important is handling text input
-    const input = (event) => {
+    const input = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUserInput(event.target.value);
     };
 
