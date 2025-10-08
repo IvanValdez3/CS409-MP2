@@ -11,8 +11,7 @@
 import React, {useState} from "react";
 import useSpotifySearch from "../SpotifyCall/SpotifySearch";
 import "./ListView.css";
-import { SongDetails } from "../DetailView/DetailView";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //Some things to consider and keep track with assignment requirements
 //1. Songs, Sorting , and Order
@@ -40,9 +39,7 @@ export function ListView({userInput}: ListViewProps) {
     const {songs, loading} = useSpotifySearch(userInput);
     const [sortBy, setSortBy] = useState<string>("title");
     const [sortOrder, setSortOrder] = useState<string>("asc"); 
-    const [song, setSong] = useState<number | null>(null);
     const navigate = useNavigate();
-    const location = useLocation();
 
     //Spotify API returns info like this
     //song.name

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 //import useSpotifySearch from "../SpotifyCall/SpotifySearch";
 import "./DetailView.css"
 
@@ -25,7 +25,6 @@ interface SongDetailsProps {
 }
 
 export function SongDetails({ items: propItems, currentSong: propCurrentSong, onClose }: SongDetailsProps) {
-    const { id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
     

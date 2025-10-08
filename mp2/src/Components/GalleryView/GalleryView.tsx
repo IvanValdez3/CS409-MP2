@@ -2,7 +2,6 @@ import React, { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import useSpotifySearch from "../SpotifyCall/SpotifySearch";
 import "./GalleryView.css";
-import { SongDetails } from "../DetailView/DetailView";
 import { getToken } from "../SpotifyCall/SpotifySearch";
 
 interface Song {
@@ -26,7 +25,6 @@ interface GalleryViewProps {
 
 export function Gallery({userInput}: GalleryViewProps) {
     const {songs: searchSongs, loading: searchLoading} = useSpotifySearch(userInput);
-    const [currentSong, setCurrentSong] = useState<number | null>(null);
     const [moodFilter, setMoodFilter] = useState<string>("all");
     const [randomSongs, setRandomSongs] = useState<Song[]>([]);
     const [loading, setLoading] = useState(false);
