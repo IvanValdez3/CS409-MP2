@@ -9,7 +9,7 @@ import { SongDetails } from './Components/DetailView/DetailView';
 function App() {
   //Now that I've worked on ListView and Spotify, there are more elements to store in the
   //start. That will control what's done later
-
+  //Comment jsut to push
   const [userInput, setUserInput] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,6 +32,7 @@ function App() {
         borderRadius: "8px",
         maxWidth: "400px"
       }}>
+
         <button
           onClick={() => navigate('/list')}
           style={{ 
